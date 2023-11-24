@@ -1,3 +1,4 @@
+
 const express = require('express')
 const app = express()
 const dotenv = require('dotenv')
@@ -9,26 +10,23 @@ const cookieParser = require('cookie-parser')
 const cors = require('cors')
 
 
-app.use(cors()) // for api communication
 
 app.use(cookieParser())//for getting token in auth
 
-//temp file uploader
-app.use(fileupload({useTempFiles: true}));
+app.use(cors()) // for api communication
+
 
 app.use(express.json()) //for data get from api
 
-
-
-
-//db check
-db()
+//temp file uploader
+app.use(fileupload({useTempFiles: true}));
 
 
 //load route
 app.use('/api',web) //loacalhost:4000/api
 
-
+//db check
+db()
 
 
 //server create 
