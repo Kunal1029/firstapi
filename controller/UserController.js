@@ -1,6 +1,7 @@
 const userModel = require('../models/usermodel')
 const bcrypt = require('bcrypt')
 const cloudinary = require('cloudinary').v2
+const jwt = require('jsonwebtoken');
 
 cloudinary.config({
     cloud_name: 'dd8z9exss',
@@ -10,11 +11,16 @@ cloudinary.config({
 
 
 class UserController {
-    static getalluser = async (req, res) => {
+    static getAllUser = async (req, res) => {
         try {
-            res.send('HI')
-        } catch (error) {
-            console.log(error)
+            const getalluserData = await userModel.find()
+            res.status(200).json({
+                success: true,
+                getalluserData
+            })
+        } catch (err) {
+            res.send(err)
+            console.log(err)
         }
     }
 
